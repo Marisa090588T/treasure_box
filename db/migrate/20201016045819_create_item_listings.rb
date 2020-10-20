@@ -6,7 +6,6 @@ class CreateItemListings < ActiveRecord::Migration[6.0]
       t.text :description
       t.boolean :item_status
       t.references :user, null: false, foreign_key: true
-      t.references :fund, null: false, foreign_key: true
 
       t.timestamps
     end
