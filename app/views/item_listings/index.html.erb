@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+      <% @item_listings.each do |item| %>
+        <div class="col-md-4 col-12 cards-index">
+          <%= link_to item_listing_path(item) do %>
+            <div class="card card-items-index">
+                <div class="card-description">
+                  <!-- add image here? -->
+                  <div class="card-body">
+                    <h5 class="card-title"><%= item.item_name %></h5>
+                    <p class="card-text"><%= item.description %></p>
+                  </div>
+
+                  <div>
+                    <h3 class="cardpricing"></h3>$<%= number_with_delimiter(item.price, :delimiter => ',') %></h3>
+                  </div>
+
+                </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+  </div>
+</div>
