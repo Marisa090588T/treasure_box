@@ -1,6 +1,6 @@
 class ItemListingsController < ApplicationController
   def index
-    @item_listing = ItemListing.all
+    @item_listings = ItemListing.all
   end
 
   def show
