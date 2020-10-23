@@ -5,10 +5,17 @@
           <%= link_to item_listing_path(item) do %>
             <div class="card card-items-index">
                 <div class="card-description">
-                  <!-- add image here? -->
                   <div class="card-body">
                     <h5 class="card-title"><%= item.item_name %></h5>
                     <p class="card-text"><%= item.description %></p>
+                    <%= cl_image_tag item.photo.key, height: 150, width: 200, crop: :fill %>
+                    <%= link_to 'Invest!', new_item_listing_store_path(item), class: 'btn btn-primary' %>
+                      <% if current_user == item.user %>
+                        <%= link_to 'edit', edit_item_listing_path(item) %> | 
+                        <%= link_to "delete", item_listing_path(item), method: :delete, data: { confirm: "Are you sure?" } %>
+                      <% else %>
+                        <%# invest here %>
+                      <% end %>
                   </div>
 
                   <div>

@@ -8,5 +8,10 @@ Rails.application.routes.draw do
     resources :dashboards, only: [:index]
   end
 
-  resources :item_listings, except: [:destroy]
+  # resources :item_listings, except: [:destroy]
+  
+  resources :item_listings do
+    resources :stores
+  end
+
 end
