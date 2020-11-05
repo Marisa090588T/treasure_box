@@ -1,0 +1,28 @@
+<div class="container">
+  <% items = [] %>
+
+  <h2>Your listed items</h2>
+
+  <div class="dashboard-container">
+    <% if current_user.item_listings.present? %>
+      <table>
+        <thead>
+          <tr class="table-headings">
+            <th>Item</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.item_listings.each do |item| %>
+          <tr class="item-list">
+            <th><%= item.item_name %></th>
+            <th><%= item.description %></th>
+            <th>$<%= item.price %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

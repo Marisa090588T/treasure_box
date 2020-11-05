@@ -142,3 +142,15 @@ item_9.photo.attach(io: file, filename: 'nes.jpg', content_type: 'image/jpg')
 item_9.save!
 
 puts 'Item 9 created!'
+
+puts 'Creating 5 stores(?) for default user!'
+
+# 5.times do
+#   store = Store.new(
+#     total_price: rand(10..100),
+#     item_status: Store::STATUS.sample,
+#     item: ItemListing.all.sample,
+#     user: User.all.sample
+#     )
+#   booking.save!
+# end
