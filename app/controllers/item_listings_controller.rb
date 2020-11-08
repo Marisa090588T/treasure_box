@@ -15,7 +15,7 @@ class ItemListingsController < ApplicationController
   end
 
   def create
-    @item_listing = ItemListing.new
+    @item_listing = ItemListing.new(item_listing_params)
     @user = current_user
     @item_listing.user = @user
     if @item_listing.save
@@ -35,9 +35,17 @@ class ItemListingsController < ApplicationController
     redirect_to item_listing_path(@item_listing)
   end
 
+  def destroy
+    @item_listing = ItemListing.find(params[:id])
+    @item_listing.destroy
+    respond_to do |format|
+      format.html { redirect_to item_listings_path, notice: 'Item was successfully deleted!' }
+    end
+  end
+
   private
 
   def item_listing_params
-    params.require(:item_listing).permit(:name, :description, :price, :item_status, :photo)
+    params.require(:item_listing).permit(:item_name, :description, :price, :item_status, :photo)
   end
 end
