@@ -1,8 +1,11 @@
-<!-- <div class="item-card m-4 row justify-content-md-center">
-  <h1><%= @item_listings.item_name %></h1>
-  <p>Description: <%= @item_listings.description %></p>
-  <br>
-  <h3>Price: <%= @item_listings.price %></h3>
-  <p>Seller: <%= @item_listings.user_id %></p>
+<div class="item-card m-4 row justify-content-md-center">
+  <h1><%= @item_listing.item_name %></h1>
+  <p>Description: <%= @item_listing.description %></p>
+  <h3>Price: <%= @item_listing.price %></h3>
+  <p>Seller: <%= @item_listing.user_id %></p>
+  <% if @item_listing.photo.attached? %>
+    <%= cl_image_tag @item_listing.photo.key, height: 150, width: 200, crop: :fill %>
+  <% else %>
+    <img class="photo_img" src="https://res.cloudinary.com/dq6gibxhn/image/upload/v1604817019/ybvenoi3u8vm85xepxyx.jpg" >
+  <% end  %>
 </div>
- -->

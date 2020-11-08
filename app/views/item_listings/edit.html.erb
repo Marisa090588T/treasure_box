@@ -1,0 +1,17 @@
+<div class="w-100 d-flex justify-content-around m-5">
+  <div class="new-item w-50">
+    <h3>Edit your item details</h3>
+    <hr>
+    <%= simple_form_for (@item_listing) do |f| %>
+      <%= f.input :item_name %>
+      <%= f.input :description %>
+      <%= f.input :price %>
+      <%= f.input :photo, as: :file %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
+<div class="w-100 d-flex justify-content-around mb-5">
+  <%= link_to 'Back to Homepage', :root, class: "btn btn-primary" %>
+</div>
