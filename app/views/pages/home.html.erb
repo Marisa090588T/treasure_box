@@ -1,6 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Welcome to Treasure Box</h1>
+<p>Where crowdfunding meets online shopping!</p>
 <% if user_signed_in? %>
   <%= link_to 'Add item', new_item_listing_path, class: "btn btn-primary"%>
-  <%= link_to 'Buy item', item_listings_path, class: "btn btn-success"%>
+  <%= link_to 'Invest item', item_listings_path, class: "btn btn-success"%>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-secondary" %>
+  <%= link_to 'Log in', new_user_session_path, class: "btn btn-secondary" %>
 <% end %>
