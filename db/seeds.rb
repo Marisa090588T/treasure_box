@@ -24,7 +24,7 @@ default_user = User.new(
 
 default_user.save!
 
-puts 'Creating 10 item in store...'
+puts 'Creating 9 items in store...'
 
 item_1 = ItemListing.new(
   item_name: "Test1",
