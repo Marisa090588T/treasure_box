@@ -2,7 +2,6 @@
   <% items = [] %>
 
   <h2>Your listed items</h2>
-
   <div class="dashboard-container">
     <% if current_user.item_listings.present? %>
       <table>
@@ -24,5 +23,32 @@
         </tbody>
       </table>
     <% end %>
+  </div>
+
+  <br>
+
+  <h2>Your Investment</h2>
+  <div class="dashboard-container">
+    <% if current_user.stores.present? %>
+      <table>
+        <thead>
+          <tr class="table-headings">
+            <th>Item</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.stores.each do |store| %>
+          <tr class="item-list">
+            <th><%= store.item_listing.item_name %></th>
+            <th><%= store.item_listing.description %></th>
+            <th>$<%= store.item_listing.price %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
   </div>
 </div>
