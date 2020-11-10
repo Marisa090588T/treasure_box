@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :item_listings do
     resources :stores
   end
-
+  
+  resources :stores
 end

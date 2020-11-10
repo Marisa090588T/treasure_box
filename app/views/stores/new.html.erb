@@ -1,0 +1,11 @@
+<div class="w-100 d-flex justify-content-around m-5">
+  <div class="new-item w-50">
+    <h3>Buy <%= @item_listing.item_name %></h3>
+    <%= render 'form', store: @store %>
+    <%= link_to 'Back', item_listing_path(@item_listing) %>
+  </div>
+</div>
+
+<div class="w-100 d-flex justify-content-around mb-5">
+  <%= link_to 'Back to Homepage', :root, class: "btn btn-primary" %>
+</div>

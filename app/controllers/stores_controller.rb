@@ -1,12 +1,12 @@
 class StoresController < ApplicationController
-  before_action :set_store, only: [:edit, :update, :destroy]
+  before_action :set_store, only: [:show, :edit, :update, :destroy]
 
   def index
     @stores = Store.where(user: current_user)
   end
 
-  # def show
-  # end
+  def show
+  end
 
   def new
     @store = Store.new
@@ -20,10 +20,10 @@ class StoresController < ApplicationController
     @store.user = current_user
 
     if @store.save
-      # @item_listing = ItemListing.find(params[:item_listing_id])
-      # @item_listing.available = false
-      # @item_listing.save
-      redirect_to store_path(@store), notice: 'Invest was successfully done.'
+      @item_listing = ItemListing.find(params[:item_listing_id])
+      @item_listing.item_status = false
+      @item_listing.save
+      redirect_to item_listing_store_path(@item_listing, @store), notice: 'Invest was successfully done.'
     else
       render :new
     end
@@ -43,16 +43,12 @@ class StoresController < ApplicationController
 
   def destroy
     @store.destroy
-    redirect_to stores_path, notice: 'Invest was successfully canceled.'
+    redirect_to item_listings_path, notice: 'Invest was successfully canceled.'
   end
 
   private
 
   def set_store
-    @store = store.find(params[:id])
+    @store = Store.find(params[:id])
   end
-
-  # def store_params
-  #   params.require(:store).permit(:total_price, :start_date, :end_date, :status)
-  # end
 end
