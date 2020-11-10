@@ -1,0 +1,14 @@
+<div class="item-card m-4 row justify-content-md-center">
+  <h1><%= @store.item_listing.item_name %></h1>
+  <p>Description: <%= @store.item_listing.description %></p>
+  <h3>You invested $<%= @store.item_listing.price %> for fund name</h3>
+  <p>Seller: <%= @store.item_listing.user_id %></p>
+  <% if @store.item_listing.photo.attached? %>
+    <%= cl_image_tag @store.item_listing.photo.key, height: 150, width: 200, crop: :fill %>
+  <% else %>
+    <img class="photo_img" src="https://res.cloudinary.com/dq6gibxhn/image/upload/v1604817019/ybvenoi3u8vm85xepxyx.jpg" >
+  <% end  %>
+  <% if current_user == @store.user %>
+    <%= link_to "cancel", store_path(@store), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>
