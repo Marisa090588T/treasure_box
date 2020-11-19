@@ -7,5 +7,6 @@ class User < ApplicationRecord
   validates :user_name, uniqueness: true
   has_one :dashboard
   has_many :item_listings, dependent: :destroy
-  has_many :stores
+  has_many :stores, dependent: :destroy
+  has_many :funds, dependent: :destroy
 end
