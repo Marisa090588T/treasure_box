@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_151752) do
+ActiveRecord::Schema.define(version: 2020_11_19_144315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 2020_10_23_151752) do
     t.index ["user_id"], name: "index_dashboards_on_user_id"
   end
 
+  create_table "funds", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "target_amount"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "fund_status"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "achievement_amount"
+    t.index ["user_id"], name: "index_funds_on_user_id"
+  end
+
   create_table "item_listings", force: :cascade do |t|
     t.string "item_name"
     t.integer "price"
@@ -51,7 +65,19 @@ ActiveRecord::Schema.define(version: 2020_10_23_151752) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "fund_id"
+    t.index ["fund_id"], name: "index_item_listings_on_fund_id"
     t.index ["user_id"], name: "index_item_listings_on_user_id"
+  end
+
+  create_table "money_investments", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id", null: false
+    t.bigint "fund_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fund_id"], name: "index_money_investments_on_fund_id"
+    t.index ["user_id"], name: "index_money_investments_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -80,7 +106,11 @@ ActiveRecord::Schema.define(version: 2020_10_23_151752) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dashboards", "users"
+  add_foreign_key "funds", "users"
+  add_foreign_key "item_listings", "funds"
   add_foreign_key "item_listings", "users"
+  add_foreign_key "money_investments", "funds"
+  add_foreign_key "money_investments", "users"
   add_foreign_key "stores", "item_listings"
   add_foreign_key "stores", "users"
 end
